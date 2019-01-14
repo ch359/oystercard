@@ -1,5 +1,7 @@
 source "https://rubygems.org" # Source of the gems
 
-gem "rspec" # Specific gem
+group :development, :test do
+  gem "rspec"
+end
 
-ruby "2.6.0" # Ruby version for the bundle 
+ruby "2.6.0" # Ruby version for the bundle
