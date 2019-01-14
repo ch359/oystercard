@@ -44,8 +44,9 @@ describe OysterCard do
 
   describe 'touch in/out functionality' do
 
-    it 'should allow the user to tap in' do
-      expect(@card).to respond_to(:touch_in)
+    it 'should allow the user to tap in and start journey' do
+      @card.touch_in
+      expect(@card.in_journey?).to be(true)
     end
 
     it 'should allow the user to tap out' do
