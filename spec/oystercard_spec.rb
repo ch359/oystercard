@@ -36,6 +36,10 @@ describe OysterCard do
 
   end
 
-
+  it "should deduct payment from balance on demand" do
+    deduct_amount = 5
+    @card.top_up(10)
+    expect { @card.deduct(deduct_amount) }.to change { @card.balance }.by(-deduct_amount)
+  end
 
 end
