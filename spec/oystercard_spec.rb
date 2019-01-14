@@ -50,7 +50,9 @@ describe OysterCard do
     end
 
     it 'should allow the user to tap out' do
-      expect(@card).to respond_to(:touch_out)
+      @card.touch_in
+      @card.touch_out
+      expect(@card.in_journey?).to be(false)
     end
 
     it 'should not be on a journey when first created' do
