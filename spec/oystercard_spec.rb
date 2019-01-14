@@ -23,4 +23,19 @@ describe OysterCard do
 
   end
 
+  describe 'consumer protections' do
+
+    it 'should have a maximum balance limit of £90' do
+      expect(OysterCard::MAXIMUM_BALANCE).to eq(90)
+    end
+
+    it 'topping up to more than the maximum balance should raise an error' do
+      @card.top_up(40)
+      expect { @card.top_up(52) }.to raise_error(OysterCard::MAX_BALANCE_ERROR)
+    end
+
+  end
+
+
+
 end
