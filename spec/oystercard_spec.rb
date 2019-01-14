@@ -46,17 +46,17 @@ describe OysterCard do
 
     it 'should allow the user to tap in and start journey' do
       @card.touch_in
-      expect(@card.in_journey?).to be(true)
+      expect(@card).to be_in_journey
     end
 
     it 'should allow the user to tap out' do
       @card.touch_in
       @card.touch_out
-      expect(@card.in_journey?).to be(false)
+      expect(@card).not_to be_in_journey
     end
 
     it 'should not be on a journey when first created' do
-      expect(@card.in_journey?).to be(false)
+      expect(@card).not_to be_in_journey
     end
 
   end
