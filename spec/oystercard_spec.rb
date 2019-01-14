@@ -52,8 +52,8 @@ describe OysterCard do
       expect(@card).to respond_to(:touch_out)
     end
 
-    it 'should respond to in_journey?' do
-      expect(@card).to respond_to(:in_journey?)
+    it 'should not be on a journey when first created' do
+      expect(@card.in_journey?).to be(false)
     end
 
   end
