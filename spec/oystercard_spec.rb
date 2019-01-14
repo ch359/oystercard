@@ -1,3 +1,5 @@
+require 'oystercard'
+
 describe Oystercard do
-# test
+
 end
