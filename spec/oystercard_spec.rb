@@ -42,4 +42,20 @@ describe OysterCard do
     expect { @card.deduct(deduct_amount) }.to change { @card.balance }.by(-deduct_amount)
   end
 
+  describe 'touch in/out functionality' do
+
+    it 'should allow the user to tap in' do
+      expect(@card).to respond_to(:touch_in)
+    end
+
+    it 'should allow the user to tap out' do
+      expect(@card).to respond_to(:touch_out)
+    end
+
+    it 'should respond to in_journey?' do
+      expect(@card).to respond_to(:in_journey?)
+    end
+
+  end
+
 end
