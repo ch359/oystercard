@@ -84,4 +84,23 @@ describe OysterCard do
     end
   end
 
+  describe 'multiple journeys' do
+    it 'should track multiple journeys' do
+      @card.top_up(20)
+      station1 = station
+      station2 = double('station2')
+      station3 = double('station3')
+      station4 = double('station4')
+      @card.touch_in(station1)
+      @card.touch_out(station2)
+      @card.touch_in(station3)
+      @card.touch_out(station4)
+      expected_result = [{in: station1, out: station2}, {in: station3, out: station4}]
+      expect(@card.journeys).to eq(expected_result)
+    end
+
+
+
+  end
+
 end
