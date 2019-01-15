@@ -59,6 +59,11 @@ describe OysterCard do
       expect(@card).not_to be_in_journey
     end
 
+    it 'should not allow journeys without a sufficient balance' do
+      expect { @card.touch_in }.to raise_error(OysterCard::NO_FUNDS_ERROR)
+    end
+
+
   end
 
 end
