@@ -6,11 +6,12 @@ class OysterCard
   MINIMUM_BALANCE = 1
   MINIMUM_CHARGE = 3
 
-  attr_reader :balance
+  attr_reader :balance, :entry_station
 
   def initialize(balance = DEFAULT_BALANCE)
     @balance = balance
     @in_use = false
+    @entry_station = nil
   end
 
   def top_up(amount)
@@ -23,7 +24,8 @@ class OysterCard
     @balance -= amount
   end
 
-  def touch_in
+  def touch_in(station)
+    @entry_station = station
     raise NO_FUNDS_ERROR if @balance < MINIMUM_BALANCE
 
     @in_use = true

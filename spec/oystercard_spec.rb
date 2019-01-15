@@ -4,6 +4,7 @@ describe OysterCard do
 
   before(:each) do
     @card = OysterCard.new
+    @station = double("Station")
   end
 
   describe 'setting up the OysterCard' do
@@ -43,13 +44,13 @@ describe OysterCard do
     end
 
     it 'should allow the user to tap in and start journey' do
-      @card.touch_in
+      @card.touch_in(@station)
       expect(@card).to be_in_journey
     end
 
     it 'should allow the user to tap out' do
 
-      @card.touch_in
+      @card.touch_in(@station)
       @card.touch_out
       expect(@card).not_to be_in_journey
     end
@@ -60,7 +61,7 @@ describe OysterCard do
 
     it 'should not allow journeys without a sufficient balance' do
       @card.instance_variable_set(:@balance, 0)
-      expect { @card.touch_in }.to raise_error(OysterCard::NO_FUNDS_ERROR)
+      expect { @card.touch_in(@station) }.to raise_error(OysterCard::NO_FUNDS_ERROR)
     end
 
     it 'should deduct journey fare from balance' do
@@ -71,10 +72,10 @@ describe OysterCard do
 
   describe 'Working with station' do
     it "Should remember the entry station" do
-      station = "Aldgate East"
+
       @card.top_up(10)
-      @card.touch_in(station)
-      expect(@card.entry_station).to eq(station)
+      @card.touch_in(@station)
+      expect(@card.entry_station).to eq(@station)
     end
   end
 
