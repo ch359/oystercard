@@ -64,10 +64,8 @@ describe OysterCard do
     end
 
     it 'should deduct journey fare from balance' do
-      fare = -3
-      expect { @card.touch_out }.to change { @card.balance }.by(fare)
+      expect { @card.touch_out }.to change { @card.balance }.by(-OysterCard::MINIMUM_CHARGE)
     end
-
 
   end
 
