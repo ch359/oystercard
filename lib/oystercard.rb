@@ -29,10 +29,14 @@ class OysterCard
   end
 
   def touch_out
+    fare = 3
+    deduct(fare)
     @in_use = false
   end
 
   def in_journey?
     @in_use
   end
+
+  private :deduct
 end

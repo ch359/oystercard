@@ -36,12 +36,6 @@ describe OysterCard do
 
   end
 
-  it "should deduct payment from balance on demand" do
-    deduct_amount = 5
-    @card.top_up(10)
-    expect { @card.deduct(deduct_amount) }.to change { @card.balance }.by(-deduct_amount)
-  end
-
   describe 'touch in/out functionality' do
 
     before(:each) do
@@ -65,8 +59,13 @@ describe OysterCard do
     end
 
     it 'should not allow journeys without a sufficient balance' do
-      @card.deduct(10)
+      @card.instance_variable_set(:@balance, 0)
       expect { @card.touch_in }.to raise_error(OysterCard::NO_FUNDS_ERROR)
+    end
+
+    it 'should deduct journey fare from balance' do
+      fare = -3
+      expect { @card.touch_out }.to change { @card.balance }.by(fare)
     end
 
 
