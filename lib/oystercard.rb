@@ -1,5 +1,4 @@
 class OysterCard
-
   DEFAULT_BALANCE = 0
   MAXIMUM_BALANCE = 90
   MAX_BALANCE_ERROR = "Card limit of #{MAXIMUM_BALANCE} reached".freeze
@@ -32,5 +31,4 @@ class OysterCard
   def in_journey?
     @in_use
   end
-
 end

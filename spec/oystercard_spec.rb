@@ -1,13 +1,11 @@
 require 'oystercard'
 
 describe OysterCard do
-
   before(:each) do
     @card = OysterCard.new
   end
 
   describe 'setting up the OysterCard' do
-
     it 'should have an initial balance equal to default balance' do
       expect(@card.balance).to eq(OysterCard::DEFAULT_BALANCE)
     end
@@ -20,11 +18,9 @@ describe OysterCard do
       top_up_amount = 10
       expect { @card.top_up(top_up_amount) }.to change { @card.balance }.by(top_up_amount)
     end
-
   end
 
   describe 'consumer protections' do
-
     it 'should have a maximum balance limit of £90' do
       expect(OysterCard::MAXIMUM_BALANCE).to eq(90)
     end
@@ -33,7 +29,6 @@ describe OysterCard do
       @card.top_up(40)
       expect { @card.top_up(52) }.to raise_error(OysterCard::MAX_BALANCE_ERROR)
     end
-
   end
 
   it "should deduct payment from balance on demand" do
@@ -43,7 +38,6 @@ describe OysterCard do
   end
 
   describe 'touch in/out functionality' do
-
     it 'should allow the user to tap in and start journey' do
       @card.touch_in
       expect(@card).to be_in_journey
@@ -58,7 +52,5 @@ describe OysterCard do
     it 'should not be on a journey when first created' do
       expect(@card).not_to be_in_journey
     end
-
   end
-
 end
