@@ -3,6 +3,7 @@ class OysterCard
   DEFAULT_BALANCE = 0
   MAXIMUM_BALANCE = 90
   MAX_BALANCE_ERROR = "Card limit of #{MAXIMUM_BALANCE} reached".freeze
+  NO_FUNDS_ERROR = 'Insufficient funds'
 
   attr_reader :balance
 
@@ -22,6 +23,8 @@ class OysterCard
   end
 
   def touch_in
+    raise NO_FUNDS_ERROR if @balance < 1
+
     @in_use = true
   end
 

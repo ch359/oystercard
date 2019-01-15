@@ -44,12 +44,17 @@ describe OysterCard do
 
   describe 'touch in/out functionality' do
 
+    before(:each) do
+      @card.top_up(10)
+    end
+
     it 'should allow the user to tap in and start journey' do
       @card.touch_in
       expect(@card).to be_in_journey
     end
 
     it 'should allow the user to tap out' do
+
       @card.touch_in
       @card.touch_out
       expect(@card).not_to be_in_journey
@@ -60,6 +65,7 @@ describe OysterCard do
     end
 
     it 'should not allow journeys without a sufficient balance' do
+      @card.deduct(10)
       expect { @card.touch_in }.to raise_error(OysterCard::NO_FUNDS_ERROR)
     end
 
