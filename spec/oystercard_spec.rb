@@ -69,4 +69,13 @@ describe OysterCard do
 
   end
 
+  describe 'Working with station' do
+    it "Should remember the entry station" do
+      station = "Aldgate East"
+      @card.top_up(10)
+      @card.touch_in(station)
+      expect(@card.entry_station).to eq(station)
+    end
+  end
+
 end
