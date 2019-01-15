@@ -34,6 +34,7 @@ class OysterCard
   def touch_out
     deduct(MINIMUM_CHARGE)
     @in_use = false
+    @entry_station = nil
   end
 
   def in_journey?

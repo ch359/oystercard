@@ -71,11 +71,16 @@ describe OysterCard do
   end
 
   describe 'Working with station' do
-    it "Should remember the entry station" do
-
+    before(:each) do
       @card.top_up(10)
       @card.touch_in(@station)
+    end
+    it "Should remember the entry station" do
       expect(@card.entry_station).to eq(@station)
+    end
+    it 'Should reset entry station on touch_out' do
+      @card.touch_out
+      expect(@card.entry_station).to be nil
     end
   end
 
