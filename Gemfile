@@ -1,4 +1,3 @@
-frozen_string_literal: true
 source "https://rubygems.org" # Source of the gems
 
 group :development, :test do # You can group gems like so and then install without the gems in this group. For example
